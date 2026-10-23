@@ -1,5 +1,5 @@
 
-name: Java CI/CD Pipeline
+name: Java CI Pipeline
 
 on:
   push:
@@ -15,16 +15,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
           cache: maven
 
-      - name: Build and test using JUnit
+      - name: Build and test
         run: mvn clean verify
-
-      - name: Build Docker image
-        if: success()
-        run: docker build -t even-odd-app .
